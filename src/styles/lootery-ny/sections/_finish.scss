@@ -100,22 +100,22 @@
 
     &__photo {
         position: absolute;
-        left: -4px;
-        right: -13px;
-        top: -24px;
+        left: -36px;
+        right: -36px;
+        top: 0;
         z-index: 10;
         pointer-events: none;
 
         @include media-min(mob-md) {
-            left: -12px;
-            right: -8px;
-            top: -51px;
+            left: -45px;
+            right: -45px;
+            //top: -51px;
         }
 
         @include media-min(mob) {
-            left: -82px;
-            right: -40px;
-            top: -56px;
+            left: -173px;
+            right: -173px;
+            //top: -56px;
         }
     }
 
@@ -148,22 +148,40 @@
     &__box-content {
         margin-left: 5.88%;
         margin-right: 5.88%;
-        padding: 65px 30px 30px;
+        padding: 36px 30px 61px;
         font-size: 16px;
         background-color: $color-white;
         border-radius: 16px;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         @include media-min(mob-md) {
             margin-left: 6%;
             margin-right: 6%;
-            padding: 80px 100px 29px;
+            padding: 47px 100px 46px;
         }
 
         @include media-min(mob) {
             margin-left: 0;
             margin-right: 0;
-            padding: 110px 160px 25px;
+            padding: 51px 160px 66px;
+        }
+    }
+
+    &--winner &__box-content {
+        padding-top: 67px;
+        padding-bottom: 108px;
+
+        @include media-min(mob-md) {
+            padding-top: 66px;
+            padding-bottom: 72px;
+        }
+
+        @include media-min(mob) {
+            padding-top: 55px;
+            padding-bottom: 83px;
         }
     }
 
@@ -256,18 +274,19 @@
         padding: 0 15px;
         grid-template-columns: 100%;
         width: fit-content;
-        margin: 15px auto 85px;
+        margin: 17px auto 0;
         font-size: 12px;
 
         @include media-min(mob-md) {
             padding: 0 20px;
-            margin-bottom: 29px;
             min-height: 42px;
+            margin-top: 24px;
             font-size: 16px;
         }
 
         @include media-min(mob) {
             min-height: 54px;
+            margin-top: 32px;
             font-size: 24px;
         }
     }

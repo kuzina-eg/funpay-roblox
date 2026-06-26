@@ -88,14 +88,21 @@
 
         &-photo {
             position: absolute;
-            width: 118%;
+            z-index: 15;
+            width: 120%;
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%,-47%);
             pointer-events: none;
 
             @include media-min(mob-md) {
-                width: 111%;
+                width: 136.82%;
+                transform: translate(-48.5%, -51%);
+            }
+
+            @include media-min(mob) {
+                width: 151.14%;
+                transform: translate(-53%,-54%);
             }
         }
 
@@ -235,19 +242,15 @@
     }
 
     &__photo {
-        //margin-left: 4.375%;
-        //margin-right: 9.375%;
         position: relative;
+        margin-top: -30px;
 
         @include media-min(mob-md) {
-            //margin-left: 8.5%;
-            //margin-right: 12.5%;
+            margin-top: -40px;
         }
 
         @include media-min(mob) {
-            margin-top: -84px;
-            //margin-left: 4%;
-            //margin-right: 8%;
+            margin-top: -140px;
         }
     }
 

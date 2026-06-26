@@ -30,13 +30,20 @@
     }
 
     &__photo {
-        margin-top: -3.5rem;
+        margin-top: 14px;
         display: flex;
         justify-content: center;
         pointer-events: none;
+        margin-left: -8%;
+        margin-right: -8%;
+
+        @include media-min(mob) {
+            margin-left: -85px;
+            margin-right: -85px;
+        }
     }
 
     &__image {
-        width: 19.5625rem;
+        //width: 914px;
     }
 }

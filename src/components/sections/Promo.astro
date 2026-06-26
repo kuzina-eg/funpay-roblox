@@ -57,8 +57,17 @@ const {
             <Fragment>{statisticTextLast}</Fragment>
             <strong>{statisticValue}</strong>
         </div>
-        <h1 class="lootery-promo__title" set:html={title}></h1>
-        <div class="lootery-promo__descr" set:html={text}></div>
+        <div class="lootery-promo__header">
+            <Picture
+                class="lootery-promo__header-image"
+                name="header"
+                directory="img/lootery-roblox/promo/"
+                type="png"
+                imageWidth="1030"
+                imageHeight="340"
+                alt=`${title}. ${text}`
+            ></Picture>
+        </div>
         <div class="lootery-promo__button">
             {
                 isLogin ?
@@ -72,11 +81,11 @@ const {
             <Picture
                 class="lootery-promo__image"
                 name="promo"
-                directory="img/lootery-ny/promo/"
+                directory="img/lootery-roblox/promo/"
                 type="png"
                 imageWidth="1561"
                 imageHeight="560"
-                sourceMobile='<source type="image/webp" srcset="img/lootery-ny/promo/promo-mobile@2x.webp 2x" media="(max-width: 767px)">'
+                sourceMobile='<source type="image/webp" srcset="img/lootery-roblox/promo/promo-mobile@2x.webp 2x" media="(max-width: 767px)">'
             ></Picture>
         </div>
 

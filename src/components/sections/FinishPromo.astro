@@ -36,9 +36,9 @@ const {
 
 ---
 
-<section class="lootery-finish">
+<section class:list={["lootery-finish", { "lootery-finish--winner": isWinner }]}>
     <div class="lootery-finish__container container">
-        <div class="lootery-finish__note">{noteText}</div>
+        { noteText ? <div class="lootery-finish__note">{noteText}</div> : '' }
         { isWinner ?
             <h1 class="lootery-finish__title" set:html={titleWinner}></h1>
             :
@@ -52,12 +52,21 @@ const {
         <div class="lootery-finish__box">
             <div class="lootery-finish__bg"></div>
             <div class="lootery-finish__photo">
-                <picture>
-                    <source type="image/webp" srcset="img/lootery-ny/finish/winners-sm@1x.webp 1x,img/lootery-ny/finish/winners-sm@2x.webp 2x" media="(max-width: 576px)">
-                    <source type="image/webp" srcset="img/lootery-ny/finish/winners-md@1x.webp 1x, img/lootery-ny/finish/winners-md@2x.webp 2x" media="(max-width: 767px)">
-                    <source type="image/webp" srcset="img/lootery-ny/finish/winners@1x.webp 1x, img/lootery-ny/finish/winners@2x.webp 2x">
-                    <img class="lootery-finish__image" src="img/lootery-ny/finish/winners@1x.png" srcset="img/lootery-ny/finish/winners@2x.png 2x" alt="" width="867" height="378" loading="lazy">
-                </picture>
+                { isWinner ?
+                    <picture>
+                        <source type="image/webp" srcset="img/lootery-roblox/finish/winners-sm@1x.webp 1x,img/lootery-roblox/finish/winners-sm@2x.webp 2x" media="(max-width: 576px)">
+                        <source type="image/webp" srcset="img/lootery-roblox/finish/winners-md@1x.webp 1x, img/lootery-roblox/finish/winners-md@2x.webp 2x" media="(max-width: 767px)">
+                        <source type="image/webp" srcset="img/lootery-roblox/finish/winners@1x.webp 1x, img/lootery-roblox/finish/winners@2x.webp 2x">
+                        <img class="lootery-finish__image" src="img/lootery-roblox/finish/winners@1x.png" srcset="img/lootery-roblox/finish/winners@2x.png 2x" alt="" width="957" height="467" loading="lazy">
+                    </picture>
+                    :
+                    <picture>
+                        <source type="image/webp" srcset="img/lootery-roblox/finish/frowning-sm@1x.webp 1x,img/lootery-roblox/finish/frowning-sm@2x.webp 2x" media="(max-width: 576px)">
+                        <source type="image/webp" srcset="img/lootery-roblox/finish/frowning-md@1x.webp 1x, img/lootery-roblox/finish/frowning-md@2x.webp 2x" media="(max-width: 767px)">
+                        <source type="image/webp" srcset="img/lootery-roblox/finish/frowning@1x.webp 1x, img/lootery-roblox/finish/frowning@2x.webp 2x">
+                        <img class="lootery-finish__image" src="img/lootery-roblox/finish/frowning@1x.png" srcset="img/lootery-roblox/finish/frowning@2x.png 2x" alt="" width="957" height="467" loading="lazy">
+                    </picture>
+                }
             </div>
             <div class="lootery-finish__box-content">
                 { isWinner ?
@@ -74,26 +83,10 @@ const {
                             </span>
                         </div>
                     </div>
-                    <div class="lootery-finish__box-status">
-                        <picture>
-                            <source type="image/webp" srcset="img/lootery-ny/finish/congratulation-sm@1x.webp 1x, img/lootery-ny/finish/congratulation-sm@2x.webp 2x" media="(max-width: 576px)">
-                            <source type="image/webp" srcset="img/lootery-ny/finish/congratulation-md@1x.webp 1x, img/lootery-ny/finish/congratulation-md@2x.webp 2x" media="(max-width: 767px)">
-                            <source type="image/webp" srcset="img/lootery-ny/finish/congratulation@1x.webp 1x, img/lootery-ny/finish/congratulation@2x.webp 2x">
-                            <img class="lootery-finish__image" src="img/lootery-ny/finish/congratulation@1x.png" srcset="img/lootery-ny/finish/congratulation@2x.png 2x" alt="" width="867" height="378" loading="lazy">
-                        </picture>
-                    </div>
                     :
                     <div class="lootery-finish__box-title" set:html={boxTitle}></div>
                     <div class="lootery-finish__box-descr --notwinner" set:html={boxText}></div>
-                    <div class="lootery-finish__box-logo"><img src="img/lootery-ny/logo.png" width="126" height="49" alt=""></div>
-                    <div class="lootery-finish__box-status">
-                        <picture>
-                            <source type="image/webp" srcset="img/lootery-ny/finish/frowning-sm@1x.webp 1x, img/lootery-ny/finish/frowning-sm@2x.webp 2x" media="(max-width: 576px)">
-                            <source type="image/webp" srcset="img/lootery-ny/finish/frowning-md@1x.webp 1x, img/lootery-ny/finish/frowning-md@2x.webp 2x" media="(max-width: 767px)">
-                            <source type="image/webp" srcset="img/lootery-ny/finish/frowning@1x.webp 1x, img/lootery-ny/finish/frowning@2x.webp 2x">
-                            <img class="lootery-finish__image" src="img/lootery-ny/finish/frowning@1x.png" srcset="img/lootery-ny/finish/frowning@2x.png 2x" alt="" width="867" height="378" loading="lazy">
-                        </picture>
-                    </div>
+                    <div class="lootery-finish__box-logo"><img src="img/lootery-roblox/logo.png" width="126" height="49" alt=""></div>
                 }
             </div>
         </div>

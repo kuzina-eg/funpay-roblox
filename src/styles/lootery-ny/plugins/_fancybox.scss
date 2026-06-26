@@ -142,6 +142,10 @@
         color: $color-black;
         line-height: 1.2;
 
+        br {
+            display: none;
+        }
+
         @include media-min(mob-md) {
             margin-bottom: 0;
             font-size: 25px;
@@ -181,9 +185,20 @@
         }
     }
 
+    &__param + &__count {
+        @include media-min(mob-md) {
+            margin-top: -18px;
+            margin-bottom: -5px;
+        }
+    }
+
     &__descr {
         margin-top: 5px;
         min-height: calc(4 * 1.2em);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         font-size: 12px;
         line-height: 1.2;
         color: $color-grey;
