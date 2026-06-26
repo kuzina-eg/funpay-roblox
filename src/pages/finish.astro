@@ -1,0 +1,169 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Picture from '@components/modules/Picture.astro';
+
+import FinishPromo from '@components/sections/FinishPromo.astro';
+import Winners from '@components/sections/Winners.astro';
+
+const prizes = [
+    {
+        title: 'Царь-пекарня',
+        count: '1 шт.',
+        image: 'pc',
+        avatar: '01',
+        user: 'Lootkiller',
+        ticket: '№7362-9053',
+        winners: ['KiskaMoriska'],
+        isDetail: true,
+    },
+    {
+        title: 'Playstation 5 Pro',
+        count: '3 шт.',
+        image: 'playstation',
+        avatar: '02',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet'],
+    },
+    {
+        title: 'Монитор LG 27GX790A-B',
+        count: '3 шт.',
+        image: 'lg',
+        avatar: '03',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet'],
+    },
+    {
+        title: 'iPhone 17 Pro Max',
+        count: '5 шт.',
+        image: 'iphone',
+        avatar: '',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet','shaska-pulemet','annapipka'],
+    },
+    {
+        title: 'OnePlus 15',
+        count: '5 шт.',
+        image: 'oneplus',
+        avatar: '',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet','shaska-pulemet','annapipka'],
+    },
+    {
+        title: 'Steam Deck OLED',
+        count: '10 шт.',
+        image: 'steam',
+        avatar: '04',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet','shaska-pulemet','annapipka','shaska-pulemet','annapipka','shaska-pulemet','annapipka','shaska-pulemet'],
+    },
+    {
+        title: 'Фирменный стакан FunPay',
+        count: '50 шт.',
+        image: 'cup',
+        avatar: '',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet'],
+    },
+    {
+        title: 'Фирменная толстовка FunPay',
+        count: '50 шт.',
+        image: 'hoodie',
+        avatar: '',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball'],
+    },
+    {
+        title: 'Игры на сумму до&nbsp;10&nbsp;000&nbsp;₽',
+        count: '50 шт.',
+        image: 'games10',
+        avatar: '',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball','Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball','Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball','Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball'],
+    },
+    {
+        title: 'Игры на сумму до&nbsp;5&nbsp;000&nbsp;₽',
+        count: '100 шт.',
+        image: 'games5',
+        avatar: '',
+        winners: ['Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball','Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball','Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball','Architekto_bz','trallalelo','shaska-pulemet','annapipka','rock&ball'],
+    },
+]
+
+const myTickets = [
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-1843',
+        tickets: '<span class="text-nowrap">№256-654</span>, <span class="text-nowrap">№648-154</span>, <span class="text-nowrap">№478-007</span>, <span class="text-nowrap">№359-148</span>, <span class="text-nowrap">№457-059</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-1843',
+        tickets: '<span class="text-nowrap">№256-654</span>, <span class="text-nowrap">№648-154</span>, <span class="text-nowrap">№478-007</span>, <span class="text-nowrap">№359-148</span>, <span class="text-nowrap">№457-059</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+    {
+        orderNumber: '#4332-4852',
+        tickets: '<span class="text-nowrap">№648-221</span>, <span class="text-nowrap">№263-399</span>, <span class="text-nowrap">№359-452</span>',
+    },
+]
+
+---
+<Layout title="Лутерея">
+
+    <FinishPromo
+        noteText="Спасибо за участие!"
+        title="<span class='u-text-accent'>Лут</span>ерея завершена"
+        titleWinner="<span class='u-text-accent'>Лут</span>ерея завершена"
+        text="Итоги розыгрыша мы подвели на стриме"
+        buttonText="Смотреть итоги на Twitch"
+        isWinner={false}
+        boxTitle="Увы, в этот<br> раз без призов"
+        boxTitleWinner="Поздравляем! Вы выиграли:<br> Nintendo Switch 2"
+        boxText="В&nbsp;следующий раз вам обязательно повезёт! Не&nbsp;теряйте надежду и&nbsp;следите за&nbsp;анонсами"
+        boxTextWinner="Воу, вот это удача! Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;личных сообщениях на&nbsp;FunPay, чтобы обсудить доставку приза. Пусть вам везёт и&nbsp;дальше"
+        myTicketsBoxTitle1="Выиграл билет:"
+    ></FinishPromo>
+
+    <div class="container">
+        <Winners
+            title="Победители"
+            items={prizes}
+            winnerName="Победитель"
+            ticket="Билет"
+            modalText="Этот приз успешно залутали:"
+            buttonText="Посмотреть мои билеты"
+            allTickets="Все билеты"
+            ticketItems={myTickets}
+            myTicketsBoxTitle1="У вас"
+            myTicketsBoxTitle2="37 билетиков"
+            ticketItems={myTickets}
+            tableParamName="Заказ"
+            tableValueName="Билеты"
+        ></Winners>
+    </div>
+</Layout>
