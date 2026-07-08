@@ -3,12 +3,18 @@
 
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
     $max: map.get($breakpoints, $name);
-    @return if($max and $max > 0, $max - 0.02, null);
+    @if $max and $max > 0 {
+        @return $max - 0.02;
+    }
+    @return null;
 }
 
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
     $min: map.get($breakpoints, $name);
-    @return if($min != 0, $min, null);
+    @if $min != 0 {
+        @return $min;
+    }
+    @return null;
 }
 
 @mixin media($name, $breakpoints: $grid-breakpoints) {

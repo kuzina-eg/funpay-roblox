@@ -13,45 +13,80 @@ Fancybox.defaults.template = {
 
 };
 
-export default function initFancybox() {
-    Fancybox.bind('[data-fancybox]', {
-        idle: false,
-        compact: false,
-        dragToClose: false,
+const options = {
+    idle: false,
+    compact: false,
+    dragToClose: false,
 
-        animated: false,
-        showClass: 'f-fadeSlowIn',
-        hideClass: false,
+    animated: false,
+    showClass: 'f-fadeSlowIn',
+    hideClass: false,
 
+    Carousel: {
+        infinite: false,
+    },
+
+    Images: {
+        zoom: false,
+        Panzoom: {
+            maxScale: 1.5,
+        },
+    },
+
+    Toolbar: {
+        absolute: true,
+        display: {
+            left: [],
+            middle: [],
+            right: ['close'],
+        },
+    },
+
+    Thumbs: {
+        type: 'classic',
         Carousel: {
-            infinite: false,
+            axis: 'y',
+            slidesPerPage: 1,
+            Navigation: true,
+            center: true,
+            fill: true,
+            dragFree: true,
         },
+    },
+};
 
-        Images: {
-            zoom: false,
-            Panzoom: {
-                maxScale: 1.5,
-            },
+export default function initFancybox() {
+    let mediaOpen = false;
+
+    const mediaOptions = {
+        ...options,
+        mainClass: 'fancybox--media',
+        on: {
+            reveal: () => { mediaOpen = true; },
+            close: () => { setTimeout(() => { mediaOpen = false; }, 100); },
         },
+    };
 
-        Toolbar: {
-            absolute: true,
-            display: {
-                left: [],
-                middle: [],
-                right: ['close'],
-            },
-        },
+    Fancybox.bind('[data-fancybox="donated-pcs"]', mediaOptions);
 
-        Thumbs: {
-            type: 'classic',
-            Carousel: {
-                axis: 'y',
-                slidesPerPage: 1,
-                Navigation: true,
-                center: true,
-                fill: true,
-                dragFree: true,
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('[data-fancybox^="gallery-"]');
+        if (!link) return;
+        e.preventDefault();
+        const group = link.getAttribute('data-fancybox');
+        const links = Array.from(document.querySelectorAll(`[data-fancybox="${group}"]`));
+        const slides = links.map((a) => ({ src: a.getAttribute('href'), type: 'image' }));
+        Fancybox.show(slides, { ...mediaOptions, startIndex: Math.max(0, links.indexOf(link)) });
+    });
+
+    Fancybox.bind('[data-fancybox]:not([data-fancybox^="gallery-"]):not([data-fancybox="donated-pcs"])', {
+        ...options,
+        on: {
+            shouldClose: (fancybox, event) => {
+                if (mediaOpen) {
+                    event.preventDefault();
+                    mediaOpen = false;
+                }
             },
         },
     });

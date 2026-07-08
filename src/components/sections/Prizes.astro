@@ -1,6 +1,7 @@
 ---
 import Button from '@components/modules/Button.astro';
 import Picture from '@components/modules/Picture.astro';
+import Carousel from '@components/modules/Carousel.astro';
 
 interface Props {
     items?: Array<string>;
@@ -22,20 +23,40 @@ const {
     ---
 <div class="prizes lootery-section">
     {items.map((item, index) => (
-        <div class="item-prize">
+        <div
+            class="item-prize"
+            style={item.type === 'invisible' ? 'display: none' : ''}
+        >
             <div class="item-prize__detail">
                 <div class="item-prize__title"><a href=`#${item.image}` class="item-prize__link" data-fancybox="prizes" set:html={item.title}></a></div>
                 <div class="item-prize__count" set:html={item.count}></div>
             </div>
             <div class="item-prize__photo">
-                <Picture
-                    class="item-prize__image"
-                    name={item.image}
-                    directory="img/lootery-roblox/prizes/"
-                    type="png"
-                    imageWidth="500"
-                    imageHeight="400"
-                ></Picture>
+                {index === 0 ? (
+                    <Carousel class="pc-photos" data-carousel-loop>
+                        {['pc', 'pc-poe-2025', 'pc-wow-2026'].map((photo) => (
+                            <div class="carousel__slide">
+                                <Picture
+                                    class="pc-photos__image"
+                                    name={photo}
+                                    directory="img/lootery-roblox/prizes/"
+                                    type="png"
+                                    imageWidth="500"
+                                    imageHeight="400"
+                                ></Picture>
+                            </div>
+                        ))}
+                    </Carousel>
+                ) : (
+                    <Picture
+                        class="item-prize__image"
+                        name={item.image}
+                        directory="img/lootery-roblox/prizes/"
+                        type="png"
+                        imageWidth="500"
+                        imageHeight="400"
+                    ></Picture>
+                )}
             </div>
             <div class="item-prize__arrow">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,18 +79,49 @@ const {
     </div>
 
     {items.map((item, index) => (
-        <div class="lootery-modal" id={item.image} style="display: none;">
-            <div class="lootery-modal__photo">
-                <Picture
-                    class="lootery-modal__image"
-                    name={item.image}
-                    directory="img/lootery-roblox/prizes/"
-                    type="png"
-                    imageWidth="500"
-                    imageHeight="400"
-                ></Picture>
-            </div>
+        <div
+            class:list={[
+                "lootery-modal",
+                { "lootery-modal--previous": item.type === 'invisible' }
+            ]}
+            id={item.image}
+            style="display: none;"
+        >
+            {item.type === 'invisible' ?
+                null
+                :
+                <div class="lootery-modal__photo">
+                    <Picture
+                        class="lootery-modal__image"
+                        name={item.image}
+                        directory="img/lootery-roblox/prizes/"
+                        type="png"
+                        imageWidth="500"
+                        imageHeight="400"
+                    ></Picture>
+                </div>
+            }
             <h3 class="lootery-modal__title" set:html={item.title}></h3>
+            {item.type === 'invisible' ?
+                <Carousel class="modal-photos">
+                    {item.photos.map((photo) => (
+                        <div class="carousel__slide">
+                            <a href={`img/lootery-roblox/gallery/${photo.image}.webp`} class="modal-photos__link" data-fancybox={`gallery-${item.image}`}>
+                                <Picture
+                                    class="modal-photos__image"
+                                    name={photo.image}
+                                    directory="img/lootery-roblox/gallery/"
+                                    type="jpg"
+                                    imageWidth="500"
+                                    imageHeight="400"
+                                ></Picture>
+                            </a>
+                        </div>
+                    ))}
+                </Carousel>
+                :
+                ''
+            }
             { item.param ?
                 <div class="lootery-modal__param" set:html={item.param}></div>
                 :
@@ -81,26 +133,34 @@ const {
                 ''
             }
             <div class="lootery-modal__descr" set:html={item.text}></div>
-            <div class="lootery-modal__note" set:html={item.note}></div>
-            <div class="lootery-modal__action">
-                <div class="lootery-modal__action-logo">
+            {item.type === 'invisible' ?
+                <div class="lootery-modal__logo">
                     <img src="img/lootery-roblox/logo.png" width="100" height="39" alt="">
                 </div>
-                <div class="lootery-modal__action-text" set:html={modalText}></div>
-            </div>
-            <div class="lootery-modal__button">
-                <Button type="link" href="#" center="true" size="lg" set:html={buttonText}></Button>
-            </div>
-            <div class="lootery-modal__pagination">
-                {items.map((item, pageIndex) => (
-                    <div
-                        class:list={[
-                            'lootery-modal__page',
-                            pageIndex == index ? 'is-active' : ''
-                        ]}
-                    ></div>
-                ))}
-            </div>
+                :
+                <div class="lootery-modal__note" set:html={item.note}></div>
+                <div class="lootery-modal__action">
+                    <div class="lootery-modal__action-logo">
+                        <img src="img/lootery-roblox/logo.png" width="100" height="39" alt="">
+                    </div>
+                    <div class="lootery-modal__action-text" set:html={modalText}></div>
+                </div>
+                <div class="lootery-modal__button">
+                    <Button type="link" href="#" center="true" size="lg" set:html={buttonText}></Button>
+                </div>
+                <div class="lootery-modal__pagination">
+                    {items
+                        .filter((page) => page.type !== 'invisible')
+                        .map((page) => (
+                            <div
+                                class:list={[
+                                    'lootery-modal__page',
+                                    page.image === item.image ? 'is-active' : ''
+                                ]}
+                            ></div>
+                        ))}
+                </div>
+            }
         </div>
     ))}
 </div>

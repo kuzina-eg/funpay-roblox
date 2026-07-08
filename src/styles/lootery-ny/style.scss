@@ -16,6 +16,7 @@
 
 // Site blocks
 @use "./blocks/accordion";
+@use "./blocks/carousel";
 @use "./blocks/countdown";
 @use "./blocks/prizeItem";
 @use "./blocks/ticketText";
@@ -26,6 +27,7 @@
 // Site sections
 @use "./sections/promo";
 @use "./sections/prizes";
+@use "./sections/donatedPcs";
 @use "./sections/myTickets";
 @use "./sections/instructions";
 @use "./sections/faq";
