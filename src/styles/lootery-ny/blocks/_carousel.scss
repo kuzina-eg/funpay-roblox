@@ -8,6 +8,7 @@
         gap: 10px;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
 
@@ -41,7 +42,7 @@
         background: none;
         transform: translateY(-50%);
         cursor: pointer;
-        transition: color $duration;
+        transition: color $duration, opacity $duration;
 
         &,
         .lootery &:not(.ui-button) {
@@ -50,6 +51,13 @@
             &:hover {
                 color: $color-accent;
             }
+        }
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            inset: -10px;
         }
 
         svg {
@@ -73,6 +81,7 @@
         }
 
         &:disabled {
+            opacity: 0;
             pointer-events: none;
         }
     }

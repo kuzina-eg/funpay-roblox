@@ -25,7 +25,7 @@ const {
     {items.map((item, index) => (
         <div
             class="item-prize"
-            style={item.type === 'invisible' ? 'display: none' : ''}
+            style={item.type === 'invisible' ? 'display: none' : null}
         >
             <div class="item-prize__detail">
                 <div class="item-prize__title"><a href=`#${item.image}` class="item-prize__link" data-fancybox="prizes" set:html={item.title}></a></div>

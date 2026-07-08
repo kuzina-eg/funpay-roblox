@@ -42,10 +42,12 @@ function setupLinear(carousel, track, prevBtn, nextBtn, getStep) {
         if (nextBtn) nextBtn.disabled = track.scrollLeft >= max - 1;
     };
 
-    if (prevBtn) prevBtn.addEventListener('click', () => {
+    if (prevBtn) prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         track.scrollBy({ left: -getStep(), behavior: 'smooth' });
     });
-    if (nextBtn) nextBtn.addEventListener('click', () => {
+    if (nextBtn) nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         track.scrollBy({ left: getStep(), behavior: 'smooth' });
     });
 
@@ -108,11 +110,13 @@ function setupLoop(carousel, track, prevBtn, nextBtn, getStep) {
         requestAnimationFrame(tick);
     };
 
-    if (prevBtn) prevBtn.addEventListener('click', () => {
+    if (prevBtn) prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         track.scrollBy({ left: -getStep(), behavior: 'smooth' });
         settleThenNormalize();
     });
-    if (nextBtn) nextBtn.addEventListener('click', () => {
+    if (nextBtn) nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         track.scrollBy({ left: getStep(), behavior: 'smooth' });
         settleThenNormalize();
     });
