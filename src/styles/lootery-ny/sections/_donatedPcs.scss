@@ -14,6 +14,12 @@
         background-color: rgba($color-white-rgb, .5);
         border-radius: 12px;
 
+        @include media(tab) {
+            .carousel__slide {
+                aspect-ratio: 3 / 2;
+            }
+        }
+
         @include media-min(tab) {
             padding: 40px;
 
