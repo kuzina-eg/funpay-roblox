@@ -253,8 +253,9 @@
         @include media-min(mob-md) {
             margin-top: 0;
             min-height: calc(6 * 1.2em);
-            margin-left: 5%;
-            margin-right: 5%;
+            margin-left: 6%;
+            margin-right: 6%;
+            text-align: justify;
         }
     }
 
